@@ -7,10 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1uzI6uVp8fhfQQPGuNx2Y-fUepgv7oW0d
 """
 
-!pip install streamlit opencv-python-headless pyngrok
-
 # Commented out IPython magic to ensure Python compatibility.
-# %%writefile app.py
+
 # import os
 # import cv2
 # import shutil
