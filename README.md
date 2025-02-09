@@ -1,4 +1,4 @@
-# molecule-image-to-video-animation
+# Molecule-image-to-video-animation
 
 # Molecule Animation Video 🎥
 
