@@ -2,6 +2,7 @@ import os
 import streamlit as st
 from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
 from tempfile import mkdtemp
+import time
 
 # 🎨 Streamlit Page Config
 st.set_page_config(page_title="Molecule Animation Creator", page_icon="🎥")
@@ -56,17 +57,28 @@ def create_video_and_gif(folder_path, video_path="output_video.mp4", gif_path="o
 
     clip = ImageSequenceClip(images, fps=fps)
 
-    # Show progress bar
+    # Create a Streamlit progress bar
     progress_bar = st.progress(0)
-    
+    progress_text = st.empty()
+
     # Save as video
-    clip.write_videofile(video_path, codec="libx264", progress_bar=True)
-    progress_bar.progress(50)
+    st.info("🎬 Creating Video... This may take a few seconds.")
+    clip.write_videofile(video_path, codec="libx264")
+
+    # Update progress
+    for percent_complete in range(0, 101, 20):
+        progress_text.text(f"Processing Video... {percent_complete}%")
+        progress_bar.progress(percent_complete)
+        time.sleep(0.5)  # Simulating progress
 
     # Save as GIF
+    st.info("🖼️ Creating GIF... Please wait.")
     clip.write_gif(gif_path, fps=fps)
+
+    # Update progress to 100%
     progress_bar.progress(100)
-    
+    progress_text.text("✅ Video & GIF Creation Complete!")
+
     return video_path, gif_path
 
 # 🎬 Video & GIF Creation
