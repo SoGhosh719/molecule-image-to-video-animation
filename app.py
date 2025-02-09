@@ -105,14 +105,43 @@ if st.button("🎬 Create Video & GIF"):
 st.sidebar.subheader("💬 Ask the Chatbot")
 
 faq_responses = {
-    "What is this app for?": "This app converts a series of molecule images into a smooth video or GIF.",
-    "What file types are supported?": "You can upload PNG, JPG, and JPEG files.",
-    "How do I ensure correct image order?": "Rename your files numerically (e.g., 1.png, 2.png) to ensure the correct order.",
-    "What does FPS mean?": "FPS (Frames Per Second) controls the speed of the animation. A higher FPS means a faster video.",
-    "Can I download both video and GIF?": "Yes! After processing, you can download both formats."
+    # General Questions
+    "What does this app do?": "This app converts a series of molecule images into a smooth video or GIF.",
+    "Who can use this app?": "Anyone! Researchers, students, and professionals working with molecule animations.",
+    "Do I need to install anything to use this app?": "No, the app runs entirely on Streamlit Cloud.",
+    "Is this app free to use?": "Yes! It is completely free to use.",
+    "Can I use this app on mobile devices?": "Yes, but for better experience, use it on a desktop or tablet.",
+
+    # File Upload Questions
+    "What file types are supported for uploading?": "PNG, JPG, and JPEG formats are supported.",
+    "How many images can I upload at once?": "There is no strict limit, but too many images may slow down processing.",
+    "What should I do if my images are not uploading?": "Check your internet connection and try re-uploading.",
+    "Can I upload images in any order?": "The app sorts images alphabetically, so rename them (1.png, 2.png, etc.).",
+    "Do I need to rename my images before uploading?": "It's recommended to rename them in order for a proper sequence.",
+
+    # Video & GIF Creation Questions
+    "How does this app convert images into a video?": "It stitches your images together using MoviePy.",
+    "How long does it take to create a video?": "Processing time depends on the number of images and FPS settings.",
+    "What does FPS mean?": "Frames Per Second (FPS) controls animation speed. Higher FPS = faster animation.",
+    "What FPS should I choose for a smooth animation?": "12-24 FPS is ideal for smooth animations.",
+    "What happens if I set a very high FPS?": "The animation will be too fast, making it hard to see details.",
+    "What is the difference between a video and a GIF?": "Videos are MP4 format with better quality, while GIFs are more compressed.",
+    "Can I create both a video and a GIF at the same time?": "Yes, the app generates both simultaneously.",
+
+    # Download & Storage Questions
+    "How do I download my video or GIF?": "Click the download button after processing is complete.",
+    "Where is my downloaded file saved?": "It is saved in your default 'Downloads' folder.",
+    "Can I share my video or GIF directly from the app?": "Not directly, but you can download and share manually.",
+    "Is there a limit to how many videos I can create?": "No, you can create as many as you want.",
+    "Will my uploaded images be stored on the server?": "No, uploaded images are processed temporarily and not stored.",
+
+    # Troubleshooting Questions
+    "Why is my video not generating?": "Check if you uploaded images and selected FPS properly.",
+    "Why does my video appear blurry?": "Use high-quality images for the best results.",
+    "Why is the animation too fast or too slow?": "Adjust the FPS settings in the sidebar.",
 }
 
 user_query = st.sidebar.text_input("Ask a question:")
 if user_query:
-    response = faq_responses.get(user_query, "I'm not sure about that. Try asking something else!")
+    response = faq_responses.get(user_query, "🤖 I'm not sure about that. Try asking something else!")
     st.sidebar.write(f"🤖 Chatbot: {response}")
