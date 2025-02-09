@@ -65,11 +65,11 @@ def create_video_and_gif(folder_path, video_path="output_video.mp4", gif_path="o
     st.info("🎬 Creating Video... This may take a few seconds.")
     clip.write_videofile(video_path, codec="libx264")
 
-    # Update progress
+    # Manually update progress
     for percent_complete in range(0, 101, 20):
         progress_text.text(f"Processing Video... {percent_complete}%")
         progress_bar.progress(percent_complete)
-        time.sleep(0.5)  # Simulating progress
+        time.sleep(0.5)
 
     # Save as GIF
     st.info("🖼️ Creating GIF... Please wait.")
@@ -100,3 +100,19 @@ if st.button("🎬 Create Video & GIF"):
                 st.download_button("🖼️ Download GIF", f, file_name="molecule_animation.gif", mime="image/gif")
     else:
         st.warning("⚠️ Please upload images first.")
+
+# 📌 Sidebar Chatbot (FAQ)
+st.sidebar.subheader("💬 Ask the Chatbot")
+
+faq_responses = {
+    "What is this app for?": "This app converts a series of molecule images into a smooth video or GIF.",
+    "What file types are supported?": "You can upload PNG, JPG, and JPEG files.",
+    "How do I ensure correct image order?": "Rename your files numerically (e.g., 1.png, 2.png) to ensure the correct order.",
+    "What does FPS mean?": "FPS (Frames Per Second) controls the speed of the animation. A higher FPS means a faster video.",
+    "Can I download both video and GIF?": "Yes! After processing, you can download both formats."
+}
+
+user_query = st.sidebar.text_input("Ask a question:")
+if user_query:
+    response = faq_responses.get(user_query, "I'm not sure about that. Try asking something else!")
+    st.sidebar.write(f"🤖 Chatbot: {response}")
